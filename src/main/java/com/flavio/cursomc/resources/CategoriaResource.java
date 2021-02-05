@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,17 +39,17 @@ public class CategoriaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody Categoria obj) {
-
+	public ResponseEntity<Void> insert(@Validated @RequestBody CategoriaDTO objDto) {
+		Categoria obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
 				path("/{id}").buildAndExpand(obj.getId()).toUri();		
 		return ResponseEntity.created(uri).build();
-
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
+	public ResponseEntity<Void> update(@Validated @RequestBody CategoriaDTO objDto, @PathVariable Integer id) {
+		Categoria obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);	
 		return ResponseEntity.noContent().build();
