@@ -18,7 +18,6 @@ import com.flavio.cursomc.domain.Endereco;
 import com.flavio.cursomc.domain.enums.TipoCliente;
 import com.flavio.cursomc.dto.ClienteDTO;
 import com.flavio.cursomc.dto.ClienteNewDTO;
-import com.flavio.cursomc.repositories.CidadeRepository;
 import com.flavio.cursomc.repositories.ClienteRepository;
 import com.flavio.cursomc.repositories.EnderecoRepository;
 import com.flavio.cursomc.services.exceptions.DataIntegrityException;
@@ -33,8 +32,6 @@ public class ClienteService{
 	@Autowired
 	EnderecoRepository enderecoRepository;
 	
-	@Autowired
-	CidadeRepository cidadeRepository;
 	
 	public Cliente find(Integer id) {
 		Optional<Cliente> obj = repo.findById(id);
