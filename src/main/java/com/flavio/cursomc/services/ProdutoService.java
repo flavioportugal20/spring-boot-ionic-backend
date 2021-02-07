@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.flavio.cursomc.domain.Categoria;
 import com.flavio.cursomc.domain.Produto;
-import com.flavio.cursomc.domain.Produto;
 import com.flavio.cursomc.repositories.CategoriaRepository;
 import com.flavio.cursomc.repositories.ProdutoRepository;
 import com.flavio.cursomc.services.exceptions.ObjectNotFoundException;
