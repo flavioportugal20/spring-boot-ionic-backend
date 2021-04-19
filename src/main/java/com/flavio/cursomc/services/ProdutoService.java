@@ -19,10 +19,10 @@ import com.flavio.cursomc.services.exceptions.ObjectNotFoundException;
 public class ProdutoService{
 	
 	@Autowired
-	ProdutoRepository repo;
+	private ProdutoRepository repo;
 	
 	@Autowired
-	CategoriaRepository categoriaRepository;
+	private CategoriaRepository categoriaRepository;
 	
 	public Produto find(Integer id) {
 		Optional<Produto> obj = repo.findById(id);

@@ -27,10 +27,10 @@ import com.flavio.cursomc.services.exceptions.ObjectNotFoundException;
 public class ClienteService{
 	
 	@Autowired
-	ClienteRepository repo;
+	private ClienteRepository repo;
 	
 	@Autowired
-	EnderecoRepository enderecoRepository;
+	private EnderecoRepository enderecoRepository;
 	
 	
 	public Cliente find(Integer id) {
