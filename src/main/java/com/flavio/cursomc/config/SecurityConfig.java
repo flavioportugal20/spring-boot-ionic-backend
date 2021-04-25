@@ -44,13 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	//libera apenas para requisições GET
 	private static final String[] PUBLIC_MATCHERS_GET = { 
 		"/produtos/**", 
-		"/categorias/**" 
+		"/categorias/**"
 	};
 	
 	//libera apenas para requisições POST
 	//tela de cadastro de login - cliente
 	private static final String[] PUBLIC_MATCHERS_POST = { 
-		"/clientes/**" 
+		"/clientes/**",
+		"/auth/forgot/**"
 	};
 	
 	@Override
