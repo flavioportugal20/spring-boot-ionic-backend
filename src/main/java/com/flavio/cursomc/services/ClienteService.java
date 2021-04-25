@@ -16,11 +16,14 @@ import org.springframework.stereotype.Service;
 import com.flavio.cursomc.domain.Cidade;
 import com.flavio.cursomc.domain.Cliente;
 import com.flavio.cursomc.domain.Endereco;
+import com.flavio.cursomc.domain.enums.Perfil;
 import com.flavio.cursomc.domain.enums.TipoCliente;
 import com.flavio.cursomc.dto.ClienteDTO;
 import com.flavio.cursomc.dto.ClienteNewDTO;
 import com.flavio.cursomc.repositories.ClienteRepository;
 import com.flavio.cursomc.repositories.EnderecoRepository;
+import com.flavio.cursomc.security.UserSS;
+import com.flavio.cursomc.services.exceptions.AuthorizationException;
 import com.flavio.cursomc.services.exceptions.DataIntegrityException;
 import com.flavio.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -35,8 +38,12 @@ public class ClienteService{
 	
 	@Autowired
 	private BCryptPasswordEncoder pe;
-	
+		
 	public Cliente find(Integer id) {
+		UserSS user = UserService.authenticated();
+		if(user==null || !user.hasRole(Perfil.ADMIN) || !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
